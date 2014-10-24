@@ -15,7 +15,7 @@
 // Instantiate application
 $app = new \Slim\Slim(require_once ROOT . 'app/config/app.php');
 //Nombre del sitio:
-$app->setName('Site-Template');
+$app->setName('Bannana Social');
 
 
 // For native PHP session
