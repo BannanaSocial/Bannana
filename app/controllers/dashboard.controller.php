@@ -1,5 +1,13 @@
 <?php
 
+use Facebook\FacebookSession;
+use Facebook\FacebookRequest;
+use Facebook\GraphUser;
+use Facebook\FacebookRequestException;
+use Facebook\FacebookJavaScriptLoginHelper;
+
+FacebookSession::setDefaultApplication('713527592065491','ddf3a02fda622027b626d7dc8fe596e3');
+
 //GET route
 $app->get('/dashboard/', $authenticate($app, 'admin'), function() use ($app){
 	$user = R::load('user', $_SESSION['user']);
@@ -79,10 +87,11 @@ $app->get('/dashboard/', $authenticate($app, 'admin'), function() use ($app){
 
 				$fbmessage->ticket = $ticket->id;
 				R::store($fbmessage);
-				
+
 				setFirebaseValue('/ticket/fbmessage/'.$fbmessage->id.'/to', $fbmessage->to);
 				setFirebaseValue('/ticket/fbmessage/'.$fbmessage->id.'/from', $fbmessage->from);
 				setFirebaseValue('/ticket/fbmessage/'.$fbmessage->id.'/message', $fbmessage->message);
+				setFirebaseValue('/ticket/fbmessage/'.$fbmessage->id.'/id', $fbmessage->fbid);
 			}
 		}
 
@@ -110,7 +119,8 @@ $app->get('/dashboard/', $authenticate($app, 'admin'), function() use ($app){
 				  'name' => $user->name,
 				  'fanpages' => $fanpages,
 				  'allpages' => $allpages->data,
-				  'messages' => $inbox);
+				  'messages' => $inbox,
+				  'accesstoken' => $fanpage->fbtoken);
 
     $app->render('dashboard.html.twig', $data);
 });
@@ -131,6 +141,37 @@ $app->post('/dashboard/fanpage/add/', $authenticate($app, 'admin'), function() u
 	R::store($fanpage);
 
     echo $fanpage->name;
+});
+
+$app->post('/dashboard/message/post/', $authenticate($app, 'admin'), function() use ($app){
+	$post = (object)$app->request()->post();
+
+	$user = R::load('user', $_SESSION['user']);
+
+	$fanpage = R::findOne('fanpage',' user = :param ',
+	           array(':param' => $user->id )
+	         );
+
+	$session = new FacebookSession($user->fbtoken);
+
+	$request = new FacebookRequest(
+	  $session,
+	  'POST',
+	  '/'.$post->id.'/messages',
+	  array (
+	    'message' => $post->message,
+	  )
+	);
+
+	var_dump($request);
+
+	$response = $request->execute();
+	$graphObject = $response->getGraphObject();
+
+	print($response);
+
+	print($graphObject);
+
 });
 
 //PUT route

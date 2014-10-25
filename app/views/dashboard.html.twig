@@ -15,7 +15,7 @@
         {% for fanpage in fanpages %}
             <h1>{{ fanpage.name }}</h1>
             <div id="messages">
-            
+                
             </div>
         {% endfor %}
     {% else %}
@@ -66,12 +66,24 @@
         var fireb = new Firebase("https://bannana.firebaseio.com/ticket/fbmessage/");
         fireb.on("child_added", function(data) {
             var message = data.val();
-            $("#messages").append('<div class="well">'+
+            $("#messages").append('<div class="row well">'+
                                         '<h2>From: '+message.from+'</h2>'+
                                         '<h2>To: '+message.to+'</h2>'+
                                         '<h2>Mesage: '+message.message+'</h2>'+
+                                        '<div class="col-xs-12 col-sm-8 col-sm-offset-2">'+
+                                            '<form action="/dashboard/message/post/" method="POST" role="form">'+            
+                                                '<div class="form-group col-xs-10">'+
+                                                    '<input type="text" class="form-control message" name="message" placeholder="Message">'+
+                                                    '<input type="hidden" class="form-control message" name="id" value="'+message.id+'">'+
+                                                '</div>'+
+                                                '<div class="col-xs-2">'+
+                                                    '<button type="submit" class="message-btn btn btn-block btn-primary">POST</button>'+
+                                                '</div>'+
+                                            '</form>'+
+                                        '</div>'+
                                     '</div>');
         });
+        
     });
 </script>
 {% endblock %}

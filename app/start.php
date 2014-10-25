@@ -70,7 +70,6 @@ function setFirebaseValue($path, $value) {
   $firebase->set($path, $value);
 }
 
-
 //crea variable $user y se la agrega a todos los views para facil deteccion de sesiones
 $app->hook('slim.before.dispatch', function() use ($app) { 
    $user = Array();
