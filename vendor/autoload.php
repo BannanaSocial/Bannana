@@ -5,3 +5,4 @@
 	require ('vendor/Slim/Slim/View.php');
 	require ('vendor/Slim-Extras/Views/Twig.php');
 	require ('vendor/Slim-Extras/Log/DateTimeFileWriter.php');
+	require ('vendor/firebase/firebaseLib.php');

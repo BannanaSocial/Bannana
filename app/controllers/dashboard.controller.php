@@ -79,6 +79,10 @@ $app->get('/dashboard/', $authenticate($app, 'admin'), function() use ($app){
 
 				$fbmessage->ticket = $ticket->id;
 				R::store($fbmessage);
+				
+				setFirebaseValue('/ticket/fbmessage/'.$fbmessage->id.'/to', $fbmessage->to);
+				setFirebaseValue('/ticket/fbmessage/'.$fbmessage->id.'/from', $fbmessage->from);
+				setFirebaseValue('/ticket/fbmessage/'.$fbmessage->id.'/message', $fbmessage->message);
 			}
 		}
 
