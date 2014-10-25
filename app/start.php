@@ -65,6 +65,11 @@ $authenticate = function ($app, $role) {
     };
 };
 
+function setFirebaseValue($path, $value) {
+  $firebase = new Firebase('https://bannana.firebaseio.com', 'He6DLMXLXR8bLPbW0su2FHcoZlAGHlDNTVf5JTmM');
+  $firebase->set($path, $value);
+}
+
 
 //crea variable $user y se la agrega a todos los views para facil deteccion de sesiones
 $app->hook('slim.before.dispatch', function() use ($app) { 
