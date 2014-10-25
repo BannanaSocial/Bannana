@@ -30,7 +30,6 @@
               vemail = response['email'];
               vname = response['name'];
               vtoken = FB.getAuthResponse()['accessToken'];
-              alert(vtoken);  
 
               $.post('/fblogin/', {fbid: vfbid,email: vemail, name: vname, token: vtoken}, function(data) {
                 //optional stuff to do after success
