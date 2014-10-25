@@ -23,12 +23,16 @@
           var vfbid;
           var vemail;
           var vname;
+          var vtoken;
+
           FB.api('/me', function(response) {
               vfbid = response['id'];
               vemail = response['email'];
               vname = response['name'];
+              vtoken = FB.getAuthResponse()['accessToken'];
+              alert(vtoken);  
 
-              $.post('/fblogin/', {fbid: vfbid,email: vemail, name: vname}, function(data) {
+              $.post('/fblogin/', {fbid: vfbid,email: vemail, name: vname, token: vtoken}, function(data) {
                 //optional stuff to do after success
                 if(data=="success")
                   window.location="/dashboard/";

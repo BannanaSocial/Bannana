@@ -2,9 +2,11 @@
 
 //GET routes
 
-$app->get("/logout", function () use ($app) {
+$app->get("/logout/", function () use ($app) {
   $env = $app->environment();
  	unset($_SESSION['user']);
+  unset($_SESSION['role']);
+  unset($_SESSION['name']);
  	$app->view()->setData('user', null);
  	$app->redirect($env['rootUri']);
 });
@@ -124,12 +126,17 @@ $app->post("/fblogin/", function () use ($app) {
         $_SESSION['role']   = $user->role;
         $_SESSION['nombre'] = $user->name;
 
+        $user->fbtoken = $post->token;
+
+        R::store($user);
+
         echo "success";
     }else{
         $user = R::dispense('user');
         $user->fbid = $fbid;
         $user->email = $post->email;
         $user->name = $post->name;
+        $user->fbtoken = $post->token;
 
         R::store($user);
 
