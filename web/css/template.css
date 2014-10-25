@@ -10,13 +10,23 @@ body{
 	height: 100%;
 }
 
+.logo:hover{
+	color: #FFDE17;
+}
+
 .logo-txt{
 	margin-top: 15px;
+	color: #FFF;
+}
+
+.logo-txt:hover{
+	color: #FFDE17;
 }
 
 .navbar, .navbar-brand, .navbar-item{
 	height: 80px;
 	text-transform: uppercase;
+	color: #fff;
 }
 
 .navbar-brand{
@@ -25,6 +35,7 @@ body{
 
 .navbar-brand:hover{
 	opacity: 1;
+	color: #FC5D44;
 }
 
 .navbar, .navbar-default{
@@ -39,14 +50,34 @@ body{
 	line-height: 30px;
 }
 
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #FC5D44;
+}
+
 .navbar-item>a:hover{
-	border-top: 3px solid #003399;
-	color: #003399;
+	border-top: 3px solid #FC5D44;
+	color: #FFF;
 	padding-top: 22px;
 }
 
+.navbar-default{
+	background: none;
+	border: none;
+}
+
 .navbar-collapse{
-	background: #f8f8f8;
+	background: #194145;
+	color: #1f1917;
+	border: none;
+}
+
+.nav-menu{
+	background-color: #FC5D44;
+	color: #fff;
 }
 
 .carrusel{

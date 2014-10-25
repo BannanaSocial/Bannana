@@ -1,14 +1,20 @@
 {% extends "base/bootstrap.html.twig" %}
 
 {% block content %}
-          <h1 class="text-center">{{ app.getName() }}</h1>
-          <p class="small">Hint: user / password</p>
-
-          <form action="login" method="POST">
-            <p>Email: <input type="text" autocomplete="false" name="email" id="email" value="{{ email_value }}" /> 
-            <span class="error">{{ email_error }}</span></p>
-            <p>Password: <input type="password" name="password" id="password" /> 
-            <span class="error">{{ password_error }}</span></p>
-            <p><input type="submit" value="Login" />
-          </form>
+    <div class="container contenido">
+		<div class="login-container">
+            <div id="output"></div>
+            <div class="avatar"></div>
+            <div class="form-box">
+                <form action="" method="">
+                    <input name="user" type="text" placeholder="username">
+                    <input type="password" placeholder="password">
+                    <button class="btn btn-info btn-block login" type="submit">Login</button>
+                </form>
+                <br/>
+                <button type="button" class="btn btn-lg btn-block fblogin"><i class="fa fa-facebook-square fbicon"></i> Facebook</button>
+                <button type="button" class="btn btn-lg btn-block twitterlogin"><i class="fa fa-twitter-square"></i> Twitter</button>
+            </div>
+        </div>
+	</div>
 {% endblock content %}

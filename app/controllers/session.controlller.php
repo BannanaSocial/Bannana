@@ -101,4 +101,45 @@ $app->post("/login", function () use ($app) {
 
 });
 
+$app->post("/fblogin/", function () use ($app) {
+  $env = $app->environment();
+
+  $post = (object)$app->request()->post();
+
+  $fbid = $post->fbid;
+
+  $errors = array();
+
+  /*
+  * Logica de login
+  */
+
+  $user = R::findOne('user',' fbid = :param ',
+             array(':param' => $fbid )
+           );
+
+    if($user){
+
+        $_SESSION['user']   = $user->id;
+        $_SESSION['role']   = $user->role;
+        $_SESSION['nombre'] = $user->name;
+
+        echo "success";
+    }else{
+        $user = R::dispense('user');
+        $user->fbid = $fbid;
+        $user->email = $post->email;
+        $user->name = $post->name;
+
+        R::store($user);
+
+        $_SESSION['user']   = $user->id;
+        $_SESSION['role']   = $user->role;
+        $_SESSION['nombre'] = $user->name;
+
+        echo "success";
+    }
+
+});
+
 ?>
