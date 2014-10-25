@@ -556,37 +556,38 @@
 				<!-- BEGIN SIDEBAR MENU -->
 				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-auto-scroll="true" data-slide-speed="200">
 					{% block sidebarhome %}
-					<li class="start active ">
+					<li class="start {% if title == "Dashboard" %}active{% endif %} ">
 						<a href="/dashboard/">
 						<i class="icon-home"></i>
 						<span class="title">Dashboard</span>
-						<span class="selected"></span>
+						{% if title == "Dashboard" %}<span class="selected"></span>{% endif %}
 						</a>
 					</li>
 					{% endblock sidebarhome %}
 					{% block sidebardepartamento %}
-					<li>
+					<li class="{% if title == "Department" %}active{% endif %}">
 						<a href="/dashboard/department/">
 						<i class="icon-tag"></i>
 						<span class="title">Department</span>
-						<span class="arrow "></span>
+						{% if title == "Department" %}<span class="selected"></span>{% endif %}
 						</a>
 					</li>
 					{% endblock sidebardepartamento %}
 					{% block sidebarstaff %}
-					<li>
+					<li class="{% if title == "Staff" %}active{% endif %}">
 						<a href="/dashboard/staff/">
 						<i class="icon-user"></i>
 						<span class="title">Staff</span>
-						<span class="arrow "></span>
+						{% if title == "Staff" %}<span class="selected"></span>{% endif %}
 						</a>
 					</li>
 					{% endblock sidebarstaff %}
 					{% block sidebarinsights %}
-					<li class="last ">
+					<li class="last {% if title == "Insights" %}active{% endif %}">
 						<a href="/dashboard/insights/">
 						<i class="icon-bar-chart"></i>
 						<span class="title">Insights</span>
+						{% if title == "Insights" %}<span class="selected"></span>{% endif %}
 						</a>
 					</li>
 					{% endblock sidebarinsights %}
@@ -711,8 +712,8 @@
 				{% endblock stylecustomizer %}
 				<!-- BEGIN PAGE HEADER-->
 				<h3 class="page-title">
-				Dashboard</h3>
-				<div class="page-bar">
+				{{ title }}</h3>
+				<div class="page-bar hide">
 					<ul class="page-breadcrumb">
 						<li>
 							<i class="fa fa-home"></i>

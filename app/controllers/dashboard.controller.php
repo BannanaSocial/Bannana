@@ -1,18 +1,10 @@
 <?php
 
-	/*
-	$fanpage = R::dispense('fanpage');
-	$fanpage->user = $user->id;
-	$fanpage->name = "Bannana Social";
-	$fanpage->fbid = "392764110879635";
-	$fanpage->fbtoken = "CAAKI8xapmdMBAKBqndwWBAaPYtqwlGEq4eBPP7cxNFelHOamXL8zLsZBXZCnw0lU4pHu7alMi5pB2HUJTpiL7tz3E1PhHRsp1YDxu6DgshvIFHrZCtyMybjJ2AyvrVBpThFTazWHpjxQbXXZBtOHqKjC7xIXuLo7ADdjwi9x46JtdKZBhJ5quiviPFNYiiTNQWpVo1alxZA1XTzq3MzDx64eAEGZAesZC3IZD";
-
-	R::store($fanpage);
-	*/
-
 //GET route
 $app->get('/dashboard/', $authenticate($app, 'admin'), function() use ($app){
 	$user = R::load('user', $_SESSION['user']);
+
+	$title = "Dashboard";
 
 	$fanpages = R::find('fanpage',' user = :param ',
 	           array(':param' => $user->id )
@@ -22,7 +14,8 @@ $app->get('/dashboard/', $authenticate($app, 'admin'), function() use ($app){
 
 	$allpages = json_decode(file_get_contents("https://graph.facebook.com/".$user->fbid."/accounts?access_token=".$user->fbtoken));
 
-	$data = array('profilepic' => $profilepic,
+	$data = array('title' => $title,
+				  'profilepic' => $profilepic,
 				  'name' => $user->name,
 				  'fanpages' => $fanpages,
 				  'allpages' => $allpages->data);

@@ -44,6 +44,6 @@
             // The person is not logged into Facebook, so we're not sure if
             // they are logged into this app or not.
           }
-       }, {scope: 'public_profile,email,manage_pages,publish_actions'});
+       }, {scope: 'public_profile,email,manage_pages,publish_actions,read_page_mailboxes,read_insights,manage_notifications'});
     });
   });
