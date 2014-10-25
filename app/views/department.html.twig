@@ -1,0 +1,59 @@
+{% extends "base/dashboard-bootstrap.html.twig" %}
+
+{% block actions %}
+{% endblock actions %}
+
+{% block todo %}
+{% endblock todo %}
+
+{% block stylecustomizer %}
+{% endblock stylecustomizer %}
+
+{% block content %}
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="panel panel-primary">
+          <div class="panel-heading">
+                <h3 class="panel-title">General Information <span class="badge pull-right">1</span></h3>
+          </div>
+          <div class="panel-body">
+                Head of Department: Juan Manuel
+          </div>
+    </div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="panel panel-primary">
+          <div class="panel-heading">
+                <h3 class="panel-title">Sales <span class="badge pull-right">5</span></h3>
+          </div>
+          <div class="panel-body">
+                Head of Department: GLo
+          </div>
+    </div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="panel panel-primary">
+          <div class="panel-heading">
+                <h3 class="panel-title">Content <span class="badge pull-right">0</span></h3>
+          </div>
+          <div class="panel-body">
+                Head of Department: Prsicila
+          </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block customjs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        var fireb = new Firebase("https://bannana.firebaseio.com/ticket/fbmessage/");
+        fireb.on("child_added", function(data) {
+            var message = data.val();
+            $("#messages").append('<div class="well">'+
+                                        '<h2>From: '+message.from+'</h2>'+
+                                        '<h2>To: '+message.to+'</h2>'+
+                                        '<h2>Mesage: '+message.message+'</h2>'+
+                                    '</div>');
+        });
+    });
+</script>
+{% endblock %}
