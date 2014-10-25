@@ -1,8 +1,8 @@
 <?php
 
 //GET route
-$app->get('/dashboard/', function () use ($app) {
-   $app->render('index.html.twig');
+$app->get('/dashboard/', $authenticate($app, 'admin'), function() use ($app){
+   $app->render('dashboard.html.twig');
 });
 
 //POST route

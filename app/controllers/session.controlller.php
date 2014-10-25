@@ -9,7 +9,7 @@ $app->get("/logout", function () use ($app) {
  	$app->redirect($env['rootUri']);
 });
 
-$app->get("/login", function () use ($app) {
+$app->get("/login/", function () use ($app) {
 	$env = $app->environment();
 
   $flash = $app->view()->getData('flash');
@@ -57,7 +57,7 @@ $app->get("/login", function () use ($app) {
 
 //POST routes
 
-$app->post("/login", function () use ($app) {
+$app->post("/login/", function () use ($app) {
 	$env = $app->environment();
 
 	$post = (object)$app->request()->post();
