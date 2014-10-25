@@ -10,7 +10,7 @@ body {
   font-family: "Open Sans", sans-serif;
   padding: 0px !important;
   margin: 0px !important;
-  font-size: 13px;
+  font-size: 15px;
   direction: ltr;
 }
 
@@ -2974,12 +2974,12 @@ Customized Bootstrap Panels
 }
 
 .panel-primary {
-  border-color: #3595bd;
+  border-color: #ffde17;
 }
 .panel-primary > .panel-heading {
-  color: #d8e3f2;
-  background-color: #428bca;
-  border-color: #3595bd;
+  color: #000;
+  background-color: #FFDE17;
+  border-color: #FFDE17;
 }
 .panel-primary > .panel-heading + .panel-collapse .panel-body {
   border-top-color: #3595bd;

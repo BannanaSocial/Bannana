@@ -125,6 +125,27 @@ $app->get('/dashboard/', $authenticate($app, 'admin'), function() use ($app){
     $app->render('dashboard.html.twig', $data);
 });
 
+$app->get('/dashboard/department/', $authenticate($app, 'admin'), function() use ($app){
+
+	$data = array('title' => "Department");
+
+    $app->render('department.html.twig', $data);
+});
+
+$app->get('/dashboard/staff/', $authenticate($app, 'admin'), function() use ($app){
+
+	$data = array('title' => "Staff");
+
+    $app->render('staff.html.twig', $data);
+});
+
+$app->get('/dashboard/insights/', $authenticate($app, 'admin'), function() use ($app){
+
+	$data = array('title' => "Insights");
+
+    $app->render('insights.html.twig', $data);
+});
+
 //POST route
 
 $app->post('/dashboard/fanpage/add/', $authenticate($app, 'admin'), function() use ($app){

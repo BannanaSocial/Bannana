@@ -1,0 +1,141 @@
+{% extends "base/dashboard-bootstrap.html.twig" %}
+
+{% block actions %}
+{% endblock actions %}
+
+{% block todo %}
+{% endblock todo %}
+
+{% block stylecustomizer %}
+{% endblock stylecustomizer %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                    <h3 class="panel-title">General Information - Juan González<span class="badge pull-right">1</span></h3>
+              </div>
+              <div class="panel-body">
+                <p>Description: Information about dates, price tickets, and FAQ.</p>
+                <p>This Month Tickets: 143</p>
+                <p>Solved: 142</p>
+                <p>Users:</p>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    <ul>Jack</ul>
+                    <ul>Jim</ul>
+                    <ul>Joe</ul>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    <ul><ul>&nbsp;</ul></ul>
+                    <ul><ul><span class="badge">1</span></ul></ul>
+                    <ul><ul>&nbsp;</ul></ul>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                    <h3 class="panel-title">Sales - Jesús de los Santos<span class="badge pull-right">5</span></h3>
+              </div>
+              <div class="panel-body">
+                <p>Description: Payment status, confirmation codes, and refunds.</p>
+                <p>This Month Tickets: 53</p>
+                <p>Solved: 48</p>
+                <p>Users:</p>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    <ul>Adam</ul>
+                    <ul>Amanda</ul>
+                    <ul>Angela</ul>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <ul><ul><span class="badge">2</span></ul></ul>
+                    <ul><ul><span class="badge">1</span></ul></ul>
+                    <ul><ul><span class="badge">2</span></ul></ul>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                    <h3 class="panel-title">Content - Gabriela Ramírez</h3>
+              </div>
+              <div class="panel-body">
+                <p>Description: Agenda, Topics, and Speakers.</p>
+                <p>This Month Tickets: 12</p>
+                <p>Solved: 12</p>
+                <p>Users:</p>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    <ul>Lambda</ul>
+                    <ul>Lowes</ul>
+                    <ul>Luke</ul>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <ul><ul>&nbsp;</ul></ul>
+                    <ul><ul>&nbsp;</ul></ul>
+                    <ul><ul>&nbsp;</ul></ul>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                    <h3 class="panel-title">Volunteering - Ana Teresa Ruíz<span class="badge pull-right">2</span></h3>
+              </div>
+              <div class="panel-body">
+                <p>Description: Requirments, meetup dates, and programme.</p>
+                <p>This Month Tickets: 23</p>
+                <p>Solved: 21</p>
+                <p>Users:</p>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    <ul>Paul</ul>
+                    <ul>Peter</ul>
+                    <ul>Pulp</ul>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <ul><ul>&nbsp;</ul></ul>
+                    <ul><ul><span class="badge">1</span></ul></ul>
+                    <ul><ul><span class="badge">1</span></ul></ul>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="pull-right">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-plus"></span> Add
+            </button>
+            <button type="button" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+            </button>
+            <button type="button" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-remove"></span> Delete
+            </button>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block customjs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        var fireb = new Firebase("https://bannana.firebaseio.com/ticket/fbmessage/");
+        fireb.on("child_added", function(data) {
+            var message = data.val();
+            $("#messages").append('<div class="well">'+
+                                        '<h2>From: '+message.from+'</h2>'+
+                                        '<h2>To: '+message.to+'</h2>'+
+                                        '<h2>Mesage: '+message.message+'</h2>'+
+                                    '</div>');
+        });
+    });
+</script>
+{% endblock %}
