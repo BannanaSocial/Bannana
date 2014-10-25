@@ -25,14 +25,17 @@
 				</button>
 				<a class="navbar-brand" href="/">
 					<div class="logo">
-						<div class="logo-txt">{{ app.getName() }}</div>
+						<img class="logo" src="{{ assetUri }}img/logo.png" style="height: 28px; width: 113px;">
 					</div>
-					<!-- <img class="logo" src="{{ assetUri }}img/logo.png"> -->
+					
 				</a>
 			</div>
 		
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-main">
+				<ul class="nav navbar-nav">
+					<h1 class="text-center"><span >Your customers’ happiness solution</span></h1>
+				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					{% if user %}
 						<li class="dropdown navbar-item menu">

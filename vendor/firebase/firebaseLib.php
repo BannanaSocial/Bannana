@@ -1,6 +1,6 @@
 <?php
 
-require_once '/vendor/firebase/lib/firebaseInterface.php';
+require_once 'vendor/firebase/lib/firebaseInterface.php';
 
 /**
  * Firebase PHP Client Library
