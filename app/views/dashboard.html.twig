@@ -14,6 +14,15 @@
     {% if fanpages %}
         {% for fanpage in fanpages %}
             <h1>{{ fanpage.name }}</h1>
+            <div id="messages">
+            {% for message in messages %}
+                <div class="well">
+                    <h2>From: {{ message.from }}</h2>
+                    <h2>To: {{ message.to }}</h2>
+                    <h2>Mesage: {{ message.message }}</h2>
+                </div>
+            {% endfor %}
+            </div>
         {% endfor %}
     {% else %}
     <div class="row">
@@ -56,3 +65,19 @@
 <div class="clearfix">
 </div>
 {% endblock content %}
+
+{% block customjs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        var fireb = new Firebase("https://bannana.firebaseio.com/ticket/fbmessage/");
+        fireb.on("child_added", function(data) {
+            var message = data.val();
+            $("#messages").append('<div class="well">'+
+                                        '<h2>From: '+message.from+'</h2>'+
+                                        '<h2>To: '+message.to+'</h2>'+
+                                        '<h2>Mesage: '+message.message+'</h2>'+
+                                    '</div>');
+        });
+    });
+</script>
+{% endblock %}
